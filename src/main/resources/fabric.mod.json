@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "auto_clicker",
+  "version": "${version}",
+  "name": "Auto clicker",
+  "description": "An automatic clicker mod for Minecraft.",
+  "authors": ["Imad Saddik"],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/ImadSaddik/MinecraftAutoClickerMod"
+  },
+  "license": "MIT",
+  "icon": "assets/auto_clicker/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.imadsaddik.autoclicker.AutoClickerClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.2",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
