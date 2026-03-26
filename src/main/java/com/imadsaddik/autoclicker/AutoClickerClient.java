@@ -123,10 +123,14 @@ public class AutoClickerClient implements ClientModInitializer {
         double currentTime = Util.getMillis();
         double timeDifference = currentTime - toggleKeyTime;
 
-        LOGGER.info("[INFO]: Current time: {} Toggle key time: {}", currentTime, toggleKeyTime);
+        double fadeInDuration = 500.0;
+        double solidDuration = 4000.0;
+        double fadeOutDuration = 500.0;
 
-        double fadeOutDuration = 5000.0;
-        if (timeDifference > fadeOutDuration) {
+        double fadeOutStartTime = fadeInDuration + solidDuration;
+        double totalDuration = fadeOutStartTime + fadeOutDuration;
+
+        if (timeDifference >= totalDuration) {
             return;
         }
 
@@ -135,11 +139,25 @@ public class AutoClickerClient implements ClientModInitializer {
             return;
         }
 
+        int alpha;
+        if (timeDifference < fadeInDuration) {
+            double fadeProgress = timeDifference / fadeInDuration;
+            alpha = (int) (255.0 * fadeProgress);
+        } else if (timeDifference < fadeOutStartTime) {
+            alpha = 255;
+        } else {
+            double fadeProgress = (timeDifference - fadeOutStartTime) / fadeOutDuration;
+            alpha = (int) (255.0 * (1.0 - fadeProgress));
+        }
+
         int x = 10;
         int y = 10;
-        int red = 0xFF00FF00;
-        int green = 0xFFFF0000;
-        int color = isModEnabled ? red : green;
+        int redColor = 0x00FF00;
+        int greenColor = 0xFF0000;
+
+        int baseColor = isModEnabled ? redColor : greenColor;
+        int color = (alpha << 24) | baseColor;
+
         String statusText = "Auto clicker: " + (isModEnabled ? "ON" : "OFF");
 
         guiGraphics.drawString(client.font, statusText, x, y, color, true);
