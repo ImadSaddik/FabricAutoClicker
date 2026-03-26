@@ -4,11 +4,12 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,6 +33,7 @@ public class AutoClickerClient implements ClientModInitializer {
 
         registerKeyBind();
         registerEvents();
+        registerHudOverlay();
     }
 
     private void registerKeyBind() {
@@ -55,6 +57,13 @@ public class AutoClickerClient implements ClientModInitializer {
             handleKeyPress(client);
             handleAutoClicker(client);
         });
+    }
+
+    private void registerHudOverlay() {
+        HudElementRegistry.addLast(
+            Identifier.fromNamespaceAndPath(MOD_ID, "status_overlay"),
+            (guiGraphics, deltaTracker) -> renderAutoClickerStatus(guiGraphics)
+        );
     }
 
     private void handleKeyPress(Minecraft client) {
@@ -100,6 +109,22 @@ public class AutoClickerClient implements ClientModInitializer {
                 }
             }
         }
+    }
+
+    private void renderAutoClickerStatus(GuiGraphics guiGraphics) {
+        Minecraft client = Minecraft.getInstance();
+        if (client.getDebugOverlay().showDebugScreen()) {
+            return;
+        }
+
+        int x = 10;
+        int y = 10;
+        int red = 0xFF00FF00;
+        int green = 0xFFFF0000;
+        int color = isModEnabled ? red : green;
+        String statusText = "Auto clicker: " + (isModEnabled ? "ON" : "OFF");
+
+        guiGraphics.drawString(client.font, statusText, x, y, color, true);
     }
 
     private boolean isLookingAtType(Minecraft client, HitResult.Type type) {
