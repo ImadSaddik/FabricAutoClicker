@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
@@ -24,6 +26,7 @@ public class AutoClickerClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     private static KeyMapping toggleKeyMapping;
+    private double toggleKeyTime = 0.0;
     private boolean isModEnabled = false;
     private boolean wasToggleKeyDown = false;
 
@@ -57,6 +60,10 @@ public class AutoClickerClient implements ClientModInitializer {
             handleKeyPress(client);
             handleAutoClicker(client);
         });
+
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            toggleKeyTime = Util.getMillis();
+        });
     }
 
     private void registerHudOverlay() {
@@ -74,6 +81,7 @@ public class AutoClickerClient implements ClientModInitializer {
 
         if (isToggleKeyDown && !wasToggleKeyDown) {
             isModEnabled = !isModEnabled;
+            toggleKeyTime = Util.getMillis();
 
             if (!isModEnabled) {
                 client.options.keyAttack.setDown(false);
@@ -112,6 +120,16 @@ public class AutoClickerClient implements ClientModInitializer {
     }
 
     private void renderAutoClickerStatus(GuiGraphics guiGraphics) {
+        double currentTime = Util.getMillis();
+        double timeDifference = currentTime - toggleKeyTime;
+
+        LOGGER.info("[INFO]: Current time: {} Toggle key time: {}", currentTime, toggleKeyTime);
+
+        double fadeOutDuration = 5000.0;
+        if (timeDifference > fadeOutDuration) {
+            return;
+        }
+
         Minecraft client = Minecraft.getInstance();
         if (client.getDebugOverlay().showDebugScreen()) {
             return;
