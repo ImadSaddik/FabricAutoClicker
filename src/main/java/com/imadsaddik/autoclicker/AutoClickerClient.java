@@ -65,8 +65,6 @@ public class AutoClickerClient implements ClientModInitializer {
 
         if (isToggleKeyDown && !wasToggleKeyDown) {
             isModEnabled = !isModEnabled;
-            String literal = "Auto clicker: " + (isModEnabled ? "ON" : "OFF");
-            player.displayClientMessage(Component.literal(literal), false);
 
             if (!isModEnabled) {
                 client.options.keyAttack.setDown(false);
