@@ -7,7 +7,7 @@
   "authors": ["Imad Saddik"],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/ImadSaddik/MinecraftAutoClickerMod"
+    "sources": "https://github.com/ImadSaddik/FabricAutoClicker"
   },
   "license": "MIT",
   "icon": "assets/auto_clicker/icon.png",
