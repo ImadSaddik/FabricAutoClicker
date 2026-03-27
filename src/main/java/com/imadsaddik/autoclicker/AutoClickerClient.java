@@ -152,10 +152,10 @@ public class AutoClickerClient implements ClientModInitializer {
 
         int x = 10;
         int y = 10;
-        int redColor = 0x00FF00;
-        int greenColor = 0xFF0000;
+        int greenColor = 0x00FF00;
+        int redColor = 0xFF0000;
 
-        int baseColor = isModEnabled ? redColor : greenColor;
+        int baseColor = isModEnabled ? greenColor : redColor;
         int color = (alpha << 24) | baseColor;
 
         String statusText = "Auto clicker: " + (isModEnabled ? "ON" : "OFF");
