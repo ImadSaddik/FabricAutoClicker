@@ -34,6 +34,46 @@ If `R` conflicts with your existing controls, you can easily change it:
 
 ![Change key binds](./images/change_key_binds.png)
 
+## Installation
+
+You have two options to get the mod. You can download the compiled file or build it yourself from the source code.
+
+### Downloading from releases
+
+This is the easiest way to install the mod for regular play.
+
+1. Download the latest `.jar` file from the [Releases](https://github.com/ImadSaddik/FabricAutoClicker/releases) page.
+2. Make sure you have the [Fabric Loader](https://fabricmc.net/use/installer/) installed for Minecraft 1.21.11.
+3. Download the [Fabric API](https://modrinth.com/mod/fabric-api) mod.
+4. Place both the Fabric API `.jar` and the Auto clicker `.jar` into your Minecraft `mods` folder.
+5. Launch the game using the Fabric profile.
+
+### Building manually
+
+If you want to compile the mod yourself, you can build it from the source code.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ImadSaddik/FabricAutoClicker.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd FabricAutoClicker
+```
+Build the mod using Gradle:
+
+```bash
+./gradlew build
+```
+
+> [!NOTE]
+> On Windows, use `gradlew.bat` instead of `./gradlew`.
+
+The compiled `.jar` file will be located in the [build/libs](./build/libs/) directory. You can then place this file in your Minecraft `mods` folder along with the Fabric API to use the mod.
+
 ## Licence
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
