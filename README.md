@@ -9,3 +9,7 @@
 A smart, context-aware auto clicker mod for Minecraft built on the Fabric API.
 
 Unlike traditional macro-based auto clickers that blindly spam the left mouse button, this mod reads the game state to perform perfect, cooldown-aware attacks and continuous block mining.
+
+Watch how the mod performs smart attacking and continuous mining based on game state.
+
+https://github.com/user-attachments/assets/cace9bd2-c89e-4acb-9a21-a7f211e5d1a4
