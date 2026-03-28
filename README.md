@@ -74,6 +74,10 @@ Build the mod using Gradle:
 
 The compiled `.jar` file will be located in the [build/libs](./build/libs/) directory. You can then place this file in your Minecraft `mods` folder along with the Fabric API to use the mod.
 
+## Contributing
+
+I welcome contributions to this project. If you want to fix a bug or add a new feature, feel free to fork the repository and submit a pull request.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
