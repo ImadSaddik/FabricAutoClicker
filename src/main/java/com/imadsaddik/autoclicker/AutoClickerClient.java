@@ -150,8 +150,8 @@ public class AutoClickerClient implements ClientModInitializer {
             alpha = (int) (255.0 * (1.0 - fadeProgress));
         }
 
-        int x = 10;
-        int y = 10;
+        int textPositionX = 10;
+        int textPositionY = 10;
         int greenColor = 0x00FF00;
         int redColor = 0xFF0000;
 
@@ -160,7 +160,7 @@ public class AutoClickerClient implements ClientModInitializer {
 
         String statusText = "Auto clicker: " + (isModEnabled ? "ON" : "OFF");
 
-        guiGraphics.drawString(client.font, statusText, x, y, color, true);
+        guiGraphics.drawString(client.font, statusText, textPositionX, textPositionY, color, true);
     }
 
     private boolean isLookingAtType(Minecraft client, HitResult.Type type) {
