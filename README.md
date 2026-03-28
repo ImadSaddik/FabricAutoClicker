@@ -13,3 +13,7 @@ Unlike traditional macro-based auto clickers that blindly spam the left mouse bu
 Watch how the mod performs smart attacking and continuous mining based on game state.
 
 https://github.com/user-attachments/assets/cace9bd2-c89e-4acb-9a21-a7f211e5d1a4
+
+## Licence
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
