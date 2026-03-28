@@ -31,7 +31,8 @@ If `R` conflicts with your existing controls, you can easily change it:
 1. Press `Esc` and go to **Options** > **Controls** > **Key Binds**.
 2. Go to the **Auto clicker** section.
 3. Click the key to rebind it to your preference.
-  ![Change key binds](./images/change_key_binds.png)
+
+![Change key binds](./images/change_key_binds.png)
 
 ## Licence
 
